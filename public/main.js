@@ -1,26 +1,20 @@
 function countdown() {
   const today = new Date()
-  
-
-  let freedom = new Date(2022, 6, 16)
-  
+  let freedom = new Date(2022, 6, 16)  
   let difference = freedom - today.getTime();
+  const second = 1000
+  const minute = second * 60
+  const hour = minute * 60
+  const day = hour * 24
   
 
-  const hour = Math.floor(difference/1000/60/60)%60;
-  const minute =Math.floor(difference/1000/60)%60;
-  const second = Math.floor(difference/1000)%60;
+  const days = Math.floor(difference/day);
+  const hours =Math.floor((difference % day) / hour);
+  const minutes = Math.floor((difference % hour) / minute);
+  const seconds = Math.floor ((difference % minute) / second)
 
-  document.querySelector('p').textContent = `${String(hour).padStart(2, '0')} hours, ${String(minute).padStart(2, '0')} minutes, ${String(second).padStart(2, '0')} seconds`
+  document.querySelector('p').textContent = `${String(days).padStart(2, '0')} days, ${String(hours).padStart(2, '0')} hours, ${String(minutes).padStart(2, '0')} minutes, ${String(seconds).padStart(2, '0')} seconds`
   setInterval(countdown, 1000);
 
-  // if (difference < 0) {
-  //   document.querySelector('h1').textContent = " COUNTDOWN IS OVER"
-  //   document.querySelector('p').textContent = "GO TO BED";
-  //   document.querySelector('body').style.background = 'black';
-  //   document.querySelector('main').style.color = 'white';
-  // }
 }
 countdown();
-
-// document.querySelector('#reset').addEventListener('click', countdown)
